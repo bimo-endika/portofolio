@@ -4,7 +4,7 @@ body {
 }
 
 .navbar {
-  background-color: #ff6b4a !important;
+  background-color: #273646 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,17 +21,17 @@ body {
 }
 
 .nav-link:hover {
-  color: #ffd700 !important;
+  color: #7dd3c0 !important;
 }
 
 .nav-link.active {
-  border-bottom: 3px solid #ffd700;
-  color: #ffd700 !important;
+  border-bottom: 3px solid #7dd3c0;
+  color: #7dd3c0 !important;
 }
 
 /* Hero Section */
 #home {
-  background: linear-gradient(135deg, #ff6b4a 0%, #ff8c6b 100%);
+  background-color: #2c3e50;
   color: white;
   padding: 120px 0;
   text-align: center;
@@ -90,13 +90,13 @@ body {
 }
 
 .btn-primary-hero {
-  background-color: white;
-  color: #ff6b4a;
+  background-color: #7dd3c0;
+  color: white;
   border: none;
 }
 
 .btn-primary-hero:hover {
-  background-color: #ffd700;
+  background-color: #6bc3b0;
   transform: translateY(-3px);
 }
 
@@ -107,8 +107,8 @@ body {
 }
 
 .btn-secondary-hero:hover {
-  background-color: white;
-  color: #ff6b4a;
+  background-color: #7dd3c0;
+  color: #2c3e50;
   transform: translateY(-3px);
 }
 
@@ -128,6 +128,27 @@ section h2 {
 /* Expertise Section */
 #work {
   background-color: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+#work .container {
+  position: relative;
+  z-index: 2;
+}
+
+#work h2 {
+  position: relative;
+  z-index: 2;
 }
 
 .expertise-card {
@@ -147,7 +168,7 @@ section h2 {
 
 .expertise-icon {
   font-size: 3rem;
-  color: #ff6b4a;
+  color: #2c3e50;
   margin-bottom: 20px;
 }
 
@@ -170,7 +191,7 @@ section h2 {
 }
 
 .progress-bar {
-  background-color: #ff6b4a;
+  background-color: #7dd3c0;
 }
 
 .progress-bar.width-30 {
@@ -286,7 +307,7 @@ section h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 102, 204, 0.7);
+  background-color: rgba(44, 62, 80, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,8 +359,8 @@ section h2 {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #ff6b4a;
-  box-shadow: 0 0 5px rgba(255, 107, 74, 0.3);
+  border-color: #7dd3c0;
+  box-shadow: 0 0 5px rgba(125, 211, 192, 0.3);
 }
 
 .contact-form textarea {
@@ -348,8 +369,8 @@ section h2 {
 }
 
 .contact-submit {
-  background-color: #ff6b4a;
-  color: white;
+  background-color: #7dd3c0;
+  color: #2c3e50;
   padding: 12px 30px;
   border: none;
   border-radius: 5px;
@@ -360,7 +381,7 @@ section h2 {
 }
 
 .contact-submit:hover {
-  background-color: #ff5733;
+  background-color: #6bc3b0;
   transform: translateY(-2px);
 }
 
@@ -387,7 +408,7 @@ section h2 {
 
 /* Social Links */
 .social-link {
-  color: #ff6b4a;
+  color: #7dd3c0;
   text-decoration: none;
   margin-right: 15px;
 }
