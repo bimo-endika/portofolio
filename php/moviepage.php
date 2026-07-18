@@ -68,11 +68,11 @@ if(isset($_POST['update_watched'])){
 <section class="mb-5">
         <h2 class="mb-4"> <?php echo htmlspecialchars($genre); ?> movie</h2><br>
 
-        <div class="row movie-grid g-2">
+        <div class="row g-4">
 
 <?php foreach($movieList as $movie): ?>
 
-<div class="col-12 col-sm-6 col-md-4 col-lg-2">
+<div class="container col-md-2">
 
     <div class="card movie-card shadow-sm">
 

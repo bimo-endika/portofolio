@@ -508,13 +508,6 @@ section h2 {
 
 }
 
-/* Grid khusus halaman movie (agar jarak antar card lebih rapat dan tetap rapi) */
-.movie-grid{
-  --bs-gutter-x: 0.5rem;
-  --bs-gutter-y: 0.5rem;
-}
-
-
 .movie-card:hover{
 
     transform:translateY(-5px);
@@ -542,18 +535,7 @@ section h2 {
 
     line-height:1.7;
 
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    display: -webkit-box;
-
-    -webkit-box-orient: vertical;
-
-    -webkit-line-clamp: 3; /* dipotong jadi ... setelah 3 baris */
-
 }
-
 
 .movie-card hr{
 
