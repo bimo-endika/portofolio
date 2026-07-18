@@ -459,3 +459,50 @@ section h2 {
     font-size: 1.8rem;
   }
 }
+
+/*-------------MOVIE PROJECTS------------------*/
+/* -----------------------------------------
+   /* -----------------------------------------
+   1. Efek Kartu Bertumpuk (Gambar 1)
+----------------------------------------- */
+.card-stack-container {
+    display: flex;
+    padding: 20px 20px 40px 20px;
+}
+
+.card-stacked {
+    /* Menghapus margin dari transition karena margin tidak lagi berubah saat hover */
+    transition: transform 0.3s ease; 
+    margin-left: -100px; /* Nilai negatif ini yang membuat kartu saling menindih */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    min-width: 220px;
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* Kartu pertama tidak perlu margin negatif di kiri */
+.card-stacked:first-child {
+    margin-left: 0;
+}
+
+/* Efek saat di-hover: Membesar dan naik ke atas saja */
+.card-stacked:hover {
+    transform: scale(1.15) translateY(-15px);
+    /* z-index: 10; DIHAPUS agar tidak maju ke depan menindih kartu kanannya */
+    /* margin-right: 50px; DIHAPUS agar tidak menggeser kartu di sebelahnya */
+}
+
+        /* -----------------------------------------
+           2. Efek Kartu Grid Biasa (Gambar 2)
+        ----------------------------------------- */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: scale(1.08); /* Kartu membesar */
+            z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+

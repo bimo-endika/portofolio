@@ -1,0 +1,2 @@
+- [Blueprint Pola PHP (forum_pendaftaran)](CATATAN_PHP.md) — Blueprint lengkap pola PHP dari project forum_pendaftaran: struktur file, auth, role-based access, CRUD registrasi, template controller
+- [Setup Pola PHP di folder php](php/setup.md) — Ringkasan setup yang bisa di-copy ke project baru, berisi struktur file, pola session/role, template controller, dan catatan penting
