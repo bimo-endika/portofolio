@@ -1,0 +1,149 @@
+/*-------------MOVIE PROJECTS------------------*/
+/* -----------------------------------------
+   /* -----------------------------------------
+   1. Efek Kartu Bertumpuk (Gambar 1)
+----------------------------------------- */
+.card-stack-container {
+    display: flex;
+    padding: 20px 20px 40px 20px;
+}
+
+.card-stacked {
+    /* Menghapus margin dari transition karena margin tidak lagi berubah saat hover */
+    transition: transform 0.3s ease;
+    margin-left: -100px; /* Nilai negatif ini yang membuat kartu saling menindih */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    min-width: 220px;
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* Kartu pertama tidak perlu margin negatif di kiri */
+.card-stacked:first-child {
+    margin-left: 0;
+}
+
+/* Efek saat di-hover: Membesar dan naik ke atas saja */
+.card-stacked:hover {
+    transform: scale(1.15) translateY(-15px);
+    /* z-index: 10; DIHAPUS agar tidak maju ke depan menindih kartu kanannya */
+    /* margin-right: 50px; DIHAPUS agar tidak menggeser kartu di sebelahnya */
+}
+
+/* -----------------------------------------
+   2. Efek Kartu Grid Biasa (Gambar 2)
+----------------------------------------- */
+/* 5 card per baris */
+
+.col-lg-custom{
+
+    flex: 0 0 20%;
+
+    max-width: 20%;
+
+}
+
+/* Laptop */
+
+@media(max-width:1200px){
+
+.col-lg-custom{
+
+    flex:0 0 25%;
+
+    max-width:25%;
+
+}
+
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+.col-lg-custom{
+
+    flex:0 0 33.333%;
+
+    max-width:33.333%;
+
+}
+
+}
+
+/* HP */
+
+@media(max-width:768px){
+
+.col-lg-custom{
+
+    flex:0 0 50%;
+
+    max-width:50%;
+
+}
+
+}
+
+/* HP kecil */
+
+@media(max-width:576px){
+
+.col-lg-custom{
+
+    flex:0 0 100%;
+
+    max-width:100%;
+
+}
+
+}
+
+.movie-card{
+
+    height:420px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.movie-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.movie-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    min-height:55px;
+
+}
+
+.movie-desc{
+
+    overflow:hidden;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:5;
+
+    -webkit-box-orient:vertical;
+
+    line-height:1.6;
+
+    min-height:130px;
+
+}
+
+hr{
+
+    margin:12px 0;
+
+}

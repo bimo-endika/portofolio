@@ -9,7 +9,8 @@ require "fungsi.php";
     <title>Movie Library</title>
     <!-- Memuat Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mv_style.css">
 </head>
 <body class="bg-light">
 
