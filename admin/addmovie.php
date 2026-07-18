@@ -63,13 +63,10 @@ if(isset($_POST['tambah_movie'])){
           <ul class="navbar-nav ms-auto">
             <!-- Home Link -->
             <li class="nav-item">
-              <a class="nav-link active" href="#">home</a>
-            </li>
-<li class="nav-item">
-              <a class="nav-link" href="../admin/addmovie.php">addmovie</a>
+              <a class="nav-link" href="../php/halamanutama.php">home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="moviepage.php">lihat sebagai tamu</a>
+              <a class="nav-link active" href="../admin/addmovie.php">addmovie</a>
             </li>
 
 

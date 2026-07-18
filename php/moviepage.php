@@ -20,6 +20,32 @@ if(isset($_POST['update_watched'])){
     header("Location: moviepage.php?genre=".$genre);
     exit;
 }
+
+if(isset($_POST['delete_movie'])){
+
+    $movie_id = (int)$_POST['movie_id'];
+
+    if(deleteMovie($movie_id) > 0){
+
+        echo "
+        <script>
+            alert('Movie berhasil dihapus');
+            window.location='moviepage.php?genre=".$genre."';
+        </script>
+        ";
+
+    }else{
+
+        echo "
+        <script>
+            alert('Movie gagal dihapus');
+        </script>
+        ";
+
+    }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -172,6 +198,27 @@ class="btn <?= $movie['watched']
 : 'Mark as Watched'; ?>
 
 </button>
+
+</form>
+
+<!-- Tombol Delete -->
+
+<form method="POST" class="mt-2">
+
+    <input
+        type="hidden"
+        name="movie_id"
+        value="<?= $movie['id']; ?>">
+
+    <button
+        type="submit"
+        name="delete_movie"
+        class="btn btn-danger w-100"
+        onclick="return confirm('Yakin ingin menghapus movie ini?');">
+
+        🗑 Delete Movie
+
+    </button>
 
 </form>
 

@@ -94,7 +94,19 @@ function getMoviesByGenre($genre)
 }
 
 
+function deleteMovie($movie_id){
 
+    global $koneksi;
+
+    $movie_id = (int)$movie_id;
+
+    mysqli_query(
+        $koneksi,
+        "DELETE FROM tbl_movie WHERE id = $movie_id"
+    );
+
+    return mysqli_affected_rows($koneksi);
+}
 
 function updateWatched($movie_id, $watched)
 {
@@ -111,3 +123,4 @@ function updateWatched($movie_id, $watched)
 
     return mysqli_affected_rows($koneksi);
 }
+
