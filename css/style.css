@@ -496,13 +496,75 @@ section h2 {
         /* -----------------------------------------
            2. Efek Kartu Grid Biasa (Gambar 2)
         ----------------------------------------- */
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: scale(1.08); /* Kartu membesar */
-            z-index: 10;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            position: relative;
-        }
+        .movie-card{
 
+    border-radius:30px;
+
+    border:2px solid #d9d9d9;
+
+    min-height:420px;
+
+    transition:.3s;
+
+}
+
+/* Grid khusus halaman movie (agar jarak antar card lebih rapat dan tetap rapi) */
+.movie-grid{
+  --bs-gutter-x: 0.5rem;
+  --bs-gutter-y: 0.5rem;
+}
+
+
+.movie-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 .7rem 1.5rem rgba(0,0,0,.15);
+
+}
+
+.movie-title{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    width:75%;
+
+}
+
+
+.movie-desc{
+
+    color:#555;
+
+    text-align:justify;
+
+    line-height:1.7;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+
+    -webkit-line-clamp: 3; /* dipotong jadi ... setelah 3 baris */
+
+}
+
+
+.movie-card hr{
+
+    border:1px solid #999;
+
+    opacity:1;
+
+}
+
+.movie-card .btn{
+
+    border-radius:12px;
+
+}

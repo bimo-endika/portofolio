@@ -64,31 +64,50 @@ function getGenre(){
 }
 
 
-
-
-
-
-
-function setWatched($username, $movie_source, $movie_id, $ditonton){
+function getMoviesByGenre($genre)
+{
     global $koneksi;
 
-    $username = mysqli_real_escape_string($koneksi, $username);
-    $movie_source = mysqli_real_escape_string($koneksi, $movie_source);
-    $movie_id = (int)$movie_id;
+    $genre = mysqli_real_escape_string($koneksi, $genre);
 
-    if ($ditonton == 1) {
-        $cek = "SELECT id FROM tbl_mvWatched WHERE username='$username' AND movie_source='$movie_source' AND movie_id=$movie_id LIMIT 1";
-        $hcek = mysqli_query($koneksi, $cek);
-        if ($hcek && mysqli_num_rows($hcek) == 0) {
-            $ins = "INSERT INTO tbl_mvWatched (username, movie_source, movie_id) VALUES ('$username', '$movie_source', $movie_id)";
-            mysqli_query($koneksi, $ins);
-        }
-        return 1;
+    $query = "SELECT
+                tbl_movie.id,
+                tbl_movie.movie_name,
+                tbl_movie.movie_link,
+                tbl_movie.deskripsi,
+                tbl_genre.genre_name
+            FROM tbl_movie
+            INNER JOIN tbl_genre
+                ON tbl_movie.genre_id = tbl_genre.id
+            WHERE tbl_genre.genre_name = '$genre'
+            ORDER BY tbl_movie.id DESC";
+
+    $result = mysqli_query($koneksi, $query);
+
+    $data = [];
+
+    while($row = mysqli_fetch_assoc($result)){
+        $data[] = $row;
     }
 
-    // ditonton = 0 -> hapus
-    $del = "DELETE FROM tbl_mvWatched WHERE username='$username' AND movie_source='$movie_source' AND movie_id=$movie_id";
-    mysqli_query($koneksi, $del);
-    return 1;
+    return $data;
 }
-?>
+
+
+
+
+function updateWatched($movie_id, $watched)
+{
+    global $koneksi;
+
+    $movie_id = (int)$movie_id;
+    $watched = $watched ? 1 : 0;
+
+    $query = "UPDATE tbl_movie
+              SET watched = $watched
+              WHERE id = $movie_id";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}

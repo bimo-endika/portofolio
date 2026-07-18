@@ -3,33 +3,27 @@ session_start();
 require "koneksi.php";
 require "fungsi.php";
 
+$isAdmin = isset($_SESSION['is_logged_in'])
+    && isset($_SESSION['peran'])
+    && $_SESSION['peran'] === 'admin';
+    
 $genre = $_GET['genre'] ?? 'Action';
-$username = $_SESSION['username'] ?? '';
+$movieList = getMoviesByGenre($genre);
 
-$isAdmin = isset($_SESSION['is_logged_in']) && isset($_SESSION['peran']) && $_SESSION['peran'] === 'admin';
 
-$movieList = getMoviesByGenreKey($genre);
+if(isset($_POST['update_watched'])){
 
-$watchedMap = [];
-if ($isAdmin) {
-    $watchedIds = getWatchedMovieIds($username, $genre);
-    foreach ($watchedIds as $id) {
-        $watchedMap[(int)$id] = true;
-    }
-}
+    $movie_id = (int)$_POST['movie_id'];
 
-if ($isAdmin && isset($_POST['simpan_watched']) && isset($_POST['movie_id'])) {
-    $movieId = (int)($_POST['movie_id']);
-    $ditonton = isset($_POST['ditonton']) ? 1 : 0;
-    setWatched($username, $genre, $movieId, $ditonton);
+    $watched = (int)$_POST['watched'];
 
-    echo "<script>
-        alert('Status ditonton tersimpan');
-        window.location.href='moviepage.php?genre=" . htmlspecialchars($genre) . "';
-    </script>";
-    exit();
+    updateWatched($movie_id, $watched);
+
+    header("Location: moviepage.php?genre=".$genre);
+    exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,47 +65,64 @@ if ($isAdmin && isset($_POST['simpan_watched']) && isset($_POST['movie_id'])) {
     </nav>
     <!-- NAVBAR END -->
 
-    <section class="mb-5">
-        <h2 class="mb-4">Movie Type / Playlist: <?php echo htmlspecialchars($genre); ?></h2>
+<section class="mb-5">
+        <h2 class="mb-4"> <?php echo htmlspecialchars($genre); ?> movie</h2><br>
 
-        <div class="row g-4">
-            <?php if (count($movieList) === 0) : ?>
-                <div class="col-12">
-                    <div class="alert alert-warning">Movie tidak ditemukan untuk genre ini.</div>
-                </div>
-            <?php else : ?>
-                <?php foreach ($movieList as $movie) :
-                    $id = (int)$movie['id'];
-                    $checked = $isAdmin && isset($watchedMap[$id]);
-                ?>
-                    <div class="col-md-3">
-                        <div class="card card-hover h-100">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Img">
-                            <div class="card-body">
-                                <h5 class="card-title">Title</h5>
-                                <p class="card-text text-muted"><?php echo htmlspecialchars($movie['movie_name']); ?></p>
+        <div class="row movie-grid g-2">
 
-                                <?php if ($isAdmin) : ?>
-                                    <form method="post" style="margin-top:8px;">
-                                        <input type="hidden" name="movie_id" value="<?php echo $id; ?>" />
+<?php foreach($movieList as $movie): ?>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="ditonton" value="1" id="chk_<?php echo $id; ?>" <?php echo $checked ? 'checked' : ''; ?> />
-                                            <label class="form-check-label" for="chk_<?php echo $id; ?>">Sudah ditonton</label>
-                                        </div>
+<div class="col-12 col-sm-6 col-md-4 col-lg-2">
 
-                                        <button type="submit" name="simpan_watched" value="1" class="btn btn-sm btn-success mt-2">Simpan</button>
-                                    </form>
-                                <?php endif; ?>
+    <div class="card movie-card shadow-sm">
 
-                                <a class="btn btn-sm btn-primary mt-2" href="<?php echo htmlspecialchars($movie['link_genre']); ?>" target="_blank">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+
+        <div class="card-body d-flex flex-column">
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-start">
+                <h5 class="movie-title">
+                    <?= htmlspecialchars($movie['movie_name']); ?>
+                </h5>
+                <?php if($isAdmin): ?>
+                <form  class="container" method="POST">
+                    <input type="hidden" name="movie_id"value="<?= $movie['id']; ?>">
+                    <input type="hidden" name="watched" value="<?= $movie['watched'] ? 0 : 1; ?>">
+            </div>
+            <hr>
+            <!-- Deskripsi -->
+            <p class="movie-desc">
+                <?= nl2br(htmlspecialchars($movie['deskripsi'])); ?>
+            </p>
+            <!-- Tombol -->
+            <div class="mt-auto">
+                <a href="<?= htmlspecialchars($movie['movie_link']); ?>"
+                   target="_blank"
+                   class="btn btn-primary w-100">
+                    Open Movie
+                </a>
+            </div>
+            <div>
+                <button type="submit" name="update_watched" class="btn btn-secondary w-100 mt-2">
+                    <?= $movie['watched'] ? 'Mark as Unwatched' : 'Mark as Watched'; ?>
+                </button>
+            </div>
+          </form>
             <?php endif; ?>
         </div>
+
+    </div>
+
+</div>
+
+<?php endforeach; ?>
+
+</div>
+        </div>
     </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

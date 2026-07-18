@@ -34,9 +34,6 @@ require "fungsi.php";
 <li class="nav-item">
               <a class="nav-link" href="../admin/addmovie.php">addmovie</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="moviepage.php">lihat sebagai tamu</a>
-            </li>
 
 
             <!-- My last work Link -->

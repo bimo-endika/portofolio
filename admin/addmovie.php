@@ -86,9 +86,9 @@ if(isset($_POST['tambah_movie'])){
 
 
     <div class="container mt-5">
-        <div class="d-flex justify-content-center align-items-center min-vh-100 px-3">
-            <div class="col-12 col-md-8 col-lg-6">
-                <section class="mb-5 p-3 bg-white rounded shadow-sm">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <section class="mb-5 p-3 bg-white rounded shadow-sm">
                     <h3 class="mb-3 h5">Tambah Movie Baru (<?php echo htmlspecialchars($genre); ?>)</h3>
                     <form method="POST">
                         <input type="hidden" name="genre" value="<?php echo htmlspecialchars($genre); ?>" />
