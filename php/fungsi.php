@@ -48,6 +48,30 @@ function addMovie($genre_id, $movie_name, $movie_link, $deskripsi){
     return mysqli_affected_rows($koneksi);
 }
 
+function updateMovie($id, $genre_id, $movie_name, $movie_link, $deskripsi)
+{
+    global $koneksi;
+
+    $id = (int)$id;
+    $genre_id = (int)$genre_id;
+
+    $movie_name = mysqli_real_escape_string($koneksi, $movie_name);
+    $movie_link = mysqli_real_escape_string($koneksi, $movie_link);
+    $deskripsi = mysqli_real_escape_string($koneksi, $deskripsi);
+
+    $query = "UPDATE tbl_movie
+              SET
+                  genre_id = $genre_id,
+                  movie_name = '$movie_name',
+                  movie_link = '$movie_link',
+                  deskripsi = '$deskripsi'
+              WHERE id = $id";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
 function getGenre(){
     global $koneksi;
 
@@ -75,6 +99,7 @@ function getMoviesByGenre($genre)
                 tbl_movie.movie_name,
                 tbl_movie.movie_link,
                 tbl_movie.deskripsi,
+                tbl_movie.watched,
                 tbl_genre.genre_name
             FROM tbl_movie
             INNER JOIN tbl_genre
@@ -93,6 +118,24 @@ function getMoviesByGenre($genre)
     return $data;
 }
 
+function getMovieById($id)
+{
+    global $koneksi;
+
+    $id = (int)$id;
+
+    $query = "SELECT
+                tbl_movie.*,
+                tbl_genre.genre_name
+              FROM tbl_movie
+              INNER JOIN tbl_genre
+              ON tbl_movie.genre_id = tbl_genre.id
+              WHERE tbl_movie.id = $id";
+
+    $result = mysqli_query($koneksi,$query);
+
+    return mysqli_fetch_assoc($result);
+}
 
 function deleteMovie($movie_id){
 

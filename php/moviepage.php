@@ -71,7 +71,7 @@ if(isset($_POST['delete_movie'])){
 
     <div class="container">
 
-        <a class="navbar-brand" href="halamanutama.php">
+        <a class="navbar-brand" href="../html/index.html">
             bimoendika.
         </a>
 
@@ -90,7 +90,7 @@ if(isset($_POST['delete_movie'])){
 
                 <li class="nav-item">
                     <a class="nav-link active" href="halamanutama.php">
-                        Movie Library
+                        home
                     </a>
                 </li>
 
@@ -201,26 +201,38 @@ class="btn <?= $movie['watched']
 
 </form>
 
-<!-- Tombol Delete -->
 
-<form method="POST" class="mt-2">
 
-    <input
-        type="hidden"
-        name="movie_id"
-        value="<?= $movie['id']; ?>">
+<!-- Edit + Delete -->
 
-    <button
-        type="submit"
-        name="delete_movie"
-        class="btn btn-danger w-100"
-        onclick="return confirm('Yakin ingin menghapus movie ini?');">
+<div class="d-flex gap-2 mt-2">
 
-        🗑 Delete Movie
+    <!-- Edit -->
+    <a href="../admin/addmovie.php?id=<?= $movie['id']; ?>"
+       class="btn btn-warning flex-fill">
+        ✏ Edit
+    </a>
 
-    </button>
+    <!-- Delete -->
+    <form method="POST" class="flex-fill d-grid">
 
-</form>
+        <input type="hidden"
+               name="movie_id"
+               value="<?= $movie['id']; ?>">
+
+        <button
+            type="submit"
+            name="delete_movie"
+            class="btn btn-danger"
+            onclick="return confirm('Yakin ingin menghapus movie ini?');">
+
+            🗑 Delete
+
+        </button>
+
+    </form>
+
+</div>
 
 <?php endif; ?>
 

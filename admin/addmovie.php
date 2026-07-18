@@ -2,6 +2,9 @@
 session_start();
 require "../php/koneksi.php";
 require "../php/fungsi.php";
+$genreList = getGenre();
+
+
 
 if (!isset($_SESSION['is_logged_in']) || $_SESSION['peran'] !== 'admin') {
     echo "<script>
@@ -24,7 +27,7 @@ if(isset($_POST['tambah_movie'])){
         echo "
         <script>
             alert('Movie berhasil ditambahkan');
-            document.location.href='../php/halamanutama.php';
+            document.location.href='#';
         </script>";
     }else{
         echo "
@@ -34,6 +37,42 @@ if(isset($_POST['tambah_movie'])){
     }
 
 }
+if(isset($_POST['update_movie'])){
+
+    $hasil = updateMovie(
+        $_POST['id'],
+        $_POST['genre_id'],
+        $_POST['movie_name'],
+        $_POST['movie_link'],
+        $_POST['deskripsi']
+    );
+    if($hasil >= 0){
+        // Ambil data movie yang sudah diupdate
+        $movie = getMovieById($_POST['id']);
+
+        header("Location: ../php/moviepage.php?genre=".$movie['genre_name']);
+        exit;
+
+    }else{
+        echo "
+        <script>
+            alert('Movie gagal diupdate');
+        </script>
+        ";
+    }
+}
+
+$isEdit = false;
+$movie = null;
+
+if(isset($_GET['id'])){
+
+    $isEdit = true;
+    $movie = getMovieById($_GET['id']);
+
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +90,7 @@ if(isset($_POST['tambah_movie'])){
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="navbar">
       <div class="container">
         <!-- Brand Logo -->
-        <a class="navbar-brand" href="#home">bimoendika.</a>
+        <a class="navbar-brand" href="../html/index.html">bimoendika.</a>
 
         <!-- Navbar Toggle untuk hp -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,36 +126,80 @@ if(isset($_POST['tambah_movie'])){
     <div class="row justify-content-center">
         <div class="col-md-6">
             <section class="mb-5 p-3 bg-white rounded shadow-sm">
-                    <h3 class="mb-3 h5">Tambah Movie Baru (<?php echo htmlspecialchars($genre); ?>)</h3>
+                    <h3 class="mb-3 h5"><?= $isEdit ? 'Edit Movie' : 'Tambah Movie Baru'; ?>
+</h3>
                     <form method="POST">
+                        <?php if($isEdit): ?>
+
+<input
+type="hidden"
+name="id"
+value="<?= $movie['id']; ?>">
+
+<?php endif; ?>
                         <input type="hidden" name="genre" value="<?php echo htmlspecialchars($genre); ?>" />
 
                         <div class="mb-3">
                             <label class="form-label">Movie Name</label>
-                            <input type="text" class="form-control form-control-sm" name="movie_name" required>
+                            <input
+type="text"
+class="form-control form-control-sm"
+name="movie_name"
+required
+value="<?= $isEdit ? htmlspecialchars($movie['movie_name']) : ''; ?>">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">genre</label>
-                            <select class="form-control form-control-sm" name="genre_id" required>
-                                <option value="">Pilih Genre</option>
-                                <option value="1">Action</option>
-                                <option value="2">Comedy</option>
-                                <option value="3">Drama</option>
-                            </select>
+                            <select
+class="form-control form-control-sm"
+name="genre_id"
+required>
+
+<option value="">Pilih Genre</option>
+
+<?php foreach($genreList as $genre): ?>
+
+<option
+
+value="<?= $genre['id']; ?>"
+
+<?= ($isEdit && $movie['genre_id']==$genre['id']) ? 'selected' : ''; ?>>
+
+<?= htmlspecialchars($genre['genre_name']); ?>
+
+</option>
+
+<?php endforeach; ?>
+
+</select>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Link</label>
-                            <input type="url" class="form-control form-control-sm" name="link_genre" placeholder="https://..." >
+                            <input
+type="url"
+class="form-control form-control-sm"
+name="movie_link"
+placeholder="https://..."
+value="<?= $isEdit ? htmlspecialchars($movie['movie_link']) : ''; ?>">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Deskripsi</label>
-                            <textarea class="form-control form-control-sm" name="deskripsi" rows="3" placeholder="Deskripsi movie"></textarea>
-                        </div>
+                            <textarea
+class="form-control"
+name="deskripsi"
+rows="3"><?= $isEdit ? htmlspecialchars($movie['deskripsi']) : ''; ?></textarea>
 
-                        <button type="submit" name="tambah_movie" value="1" class="btn btn-primary btn-sm">Tambah</button>
+                       <button
+type="submit"
+name="<?= $isEdit ? 'update_movie' : 'tambah_movie'; ?>"
+class="btn <?= $isEdit ? 'btn-warning' : 'btn-primary'; ?>">
+
+<?= $isEdit ? 'Update Movie' : 'Tambah Movie'; ?>
+
+</button>
                     </form>
                 </section>
             </div>

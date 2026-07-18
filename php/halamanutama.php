@@ -18,7 +18,7 @@ require "fungsi.php";
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="navbar">
       <div class="container">
         <!-- Brand Logo -->
-        <a class="navbar-brand" href="#home">bimoendika.</a>
+        <a class="navbar-brand" href="../html/index.html">bimoendika.</a>
 
         <!-- Navbar Toggle untuk hp -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -417,6 +417,84 @@ section h2 {
   margin-right: 0;
 }
 
+/* Free Time Section */
+#free-time {
+  background-color: #f8f9fa;
+}
+
+.free-time-hero {
+  background: linear-gradient(135deg, rgba(125, 211, 192, 0.18), rgba(39, 54, 70, 0.05));
+  border-radius: 14px;
+  padding: 26px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 22px;
+}
+
+.free-time-intro h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.free-time-intro p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.free-time-badges {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.free-time-badge {
+  background: #273646;
+  color: white;
+  border: 1px solid rgba(125, 211, 192, 0.35);
+  border-radius: 999px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.free-time-card {
+  background-color: white;
+  border-radius: 14px;
+  padding: 22px;
+  height: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.free-time-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+}
+
+.free-time-icon {
+  font-size: 2rem;
+  color: #7dd3c0;
+  margin-bottom: 12px;
+}
+
+.free-time-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.free-time-card-text {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-content {
