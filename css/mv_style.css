@@ -15,7 +15,7 @@
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
     min-width: 220px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #fff;
 }
 
@@ -28,7 +28,7 @@
 .card-stacked:hover {
     transform: scale(1.15) translateY(-15px);
     /* z-index: 10; DIHAPUS agar tidak maju ke depan menindih kartu kanannya */
-    /* margin-right: 50px; DIHAPUS agar tidak menggeser kartu di sebelahnya */
+    /*margin-right: 50px; /*DIHAPUS agar tidak menggeser kartu di sebelahnya */
 }
 
 /* -----------------------------------------
