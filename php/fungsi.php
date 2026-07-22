@@ -18,7 +18,7 @@ function login($akun){
         return -1;
     }
 
-    // pastikan field password ada
+    
 
 
     $cekPassword = mysqli_fetch_assoc($hasilCekLoginUser);

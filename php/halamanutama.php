@@ -50,13 +50,13 @@ require "fungsi.php";
 
     <div class="container">
         
-        <!-- Judul Utama (Movie Library) -->
+        
         <div class="d-flex justify-content-center mb-5">
             <h2 class="title-box">MY MOVIE LIBRARY</h2>
         </div>
 
-        <!-- Grid 2x2 untuk Tumpukan Kartu -->
-        <div class="row gx-5 gy-5 mb-5"> <!-- gy-5 memberi jarak vertikal antar baris -->
+        
+        <div class="row gx-5 gy-5 mb-5"> 
             
             <!-- Kolom 1 (Kiri Atas) -->
 <div class="col-md-6 d-flex flex-column align-items-center">
@@ -181,12 +181,12 @@ require "fungsi.php";
                 </div>
             </div>
 
-        </div> <!-- Akhir Grid -->
+        </div> 
 
-    </div> <!-- Akhir Container -->
+    </div> 
 
 
-    <!-- Script Bootstrap 5 -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
